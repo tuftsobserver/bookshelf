@@ -14,10 +14,6 @@ var bit5 = '&ensp;<i class="fa fa-quote-right"></i></p><p>&mdash;<span class="na
             // + Name
 var bit6 = '</span></p></div></a></li>';
 
-$(document).ready( function() {
-    $("body").fadeIn(1000);
-});
-
 $.ajax({
   url:JSONURL,
   success: function(data){
@@ -55,12 +51,15 @@ $.ajax({
         else name = rowObj["yourname"];
         var toAdd = bit1 + rowObj["title"] + ' ' + rowObj["author"] + bit2 + rowObj["title"] + bit3 + rowObj["author"] + bit4 + rowObj["whydoyourecommendthisbook"] + bit5 + name + bit6;
         document.getElementById("grid").innerHTML = toAdd + document.getElementById("grid").innerHTML;
-    }
 
-    new AnimOnScroll( document.getElementById( 'grid' ), {
-        minDuration : 0.4,
-        maxDuration : 0.7,
-        viewportFactor : 0.4
-    } );
+        if (i + 1 == cells.length) {
+            /* credit to http://tympanus.net/Development/GridLoadingEffects/index8.html*/
+            new AnimOnScroll(document.getElementById('grid'), {
+                minDuration: 0.4,
+                maxDuration: 0.7,
+                viewportFactor: 0.2
+            });
+        }
+    }
   }
 });

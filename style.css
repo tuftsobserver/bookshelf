@@ -14,10 +14,6 @@ body {
     color: #48484a;
 }
 
-body {
-    display: none; /*for initial fade-in*/
-}
-
 h1 {
     margin: 0;
     text-align: center;
@@ -181,7 +177,7 @@ a {
     }
 
     h1 {
-        font-size: 3.5em;
+        font-size: 3em;
     }
 }
 
