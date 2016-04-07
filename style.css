@@ -106,7 +106,7 @@ a {
 	display: block;
 	float: left;
 	padding: 7px;
-	width: 32%;
+	width: 32%; /*three columns*/
 	opacity: 0;
 }
 
@@ -158,37 +158,50 @@ a {
 }
 
 #credit {
+    width: 100%;
     position: fixed;
     bottom: 0;
-    padding: 1rem;
-    width: 100%;
     background: #48484a;
     opacity:0;
+    z-index:5;
+    transition: all 0.2s ease-in-out;
+}
+
+#credit-text {
+    width: calc(100% - 4rem);
+    margin: 1rem;
     text-align: center;
     font-family: "Ubuntu", sans-serif;
     font-weight: 700;
     text-transform: uppercase;
     color: white;
-    z-index:5;
-    transition: all 0.2s ease-in-out;
 }
 
 @media only screen and (max-width: 720px) {
-    .grid li {
-    	width: 97%;
+    h1 {
+        font-size: 2.5rem;
     }
 
-    h1 {
-        font-size: 3em;
+    h2 {
+        font-size: 1rem;
+    }
+
+    .grid li {
+        width: 96%; /*one column*/
+    }
+
+    #credit-text {
+        font-size: 0.75rem;
+        text-align: left;
     }
 }
 
 @media only screen and (min-width:721px) and (max-width:1280px) {
-    .grid li {
-    	width: 48%;
+    h1 {
+        font-size: 4rem;
     }
 
-    h1 {
-        font-size: 4em;
+    .grid li {
+        width: 48%; /*two columns*/
     }
 }
