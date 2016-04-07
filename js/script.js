@@ -1,18 +1,28 @@
 // Credit for pulling from google sheets code to http://kovalent.co/blog/google-docs-as-a-backend/
 
-var JSONURL = 'https://spreadsheets.google.com/feeds/list/1QfO2MslmoiQWT8C158_9it0K4kYcPf86jMS9SHVgom4/1/public/basic?alt=json';
+var JSONURL = 'https://spreadsheets.google.com/feeds/list/1IL89C-BX3Qjh-FFNcu_-CSdgmdvNUIXovHJmWimx-zU/1/public/basic?alt=json';
 
 var bit1 = '<li><a target="_blank" href=\"http://www.goodreads.com/search?utf8=%E2%9C%93&q='
             // + Title and author search query for goodreads
 var bit2 = '&search_type=books\"><div class="block"><span class="title"><i class="fa fa-bookmark"></i>&ensp;';
             // + Title
-var bit3 = '</span><span class="author">&emsp;';
+var bit3 = '</span>&emsp;<wbr><span class="author">';
             // + Author
 var bit4 = '</span><p class="rec"><i class="fa fa-quote-left"></i>&ensp;';
             // + Rec
-var bit5 = '&ensp;<i class="fa fa-quote-right"></i></p><p>&mdash;<span class="name">';
+var bit5 = '&ensp;<wbr><i class="fa fa-quote-right"></i></p><p>&mdash;<span class="name">';
             // + Name
 var bit6 = '</span></p></div></a></li>';
+
+$("#O").hover(function(){
+    $("#o-img").attr("src", function(index, attr){
+        return attr.replace("-red", "-white");
+    });
+}, function(){
+    $("#o-img").attr("src", function(index, attr){
+        return attr.replace("-white", "-red");
+    });
+});
 
 $.ajax({
   url:JSONURL,
@@ -27,7 +37,7 @@ $.ajax({
         for (var j = 0; j < rowCols.length; j++){
             var keyVal = rowCols[j].split(':');
             if (keyVal[0].trim() != "title" && keyVal[0].trim() != "author" &&
-            keyVal[0].trim() != "whydoyourecommendthisbook" && keyVal[0].trim() != "yourname") {
+            keyVal[0].trim() != "recommendation" && keyVal[0].trim() != "yourname") {
                 // Concatonate this to previous since error w/ splitting commas/colon
                 rowObj[tempPrev] += ', ' + keyVal[0].trim();
                 for (var k = 1; k < keyVal.length; k++) {
@@ -49,7 +59,7 @@ $.ajax({
         if (rowObj["yourname"] == undefined)
             name = "Anonymous";
         else name = rowObj["yourname"];
-        var toAdd = bit1 + rowObj["title"] + ' ' + rowObj["author"] + bit2 + rowObj["title"] + bit3 + rowObj["author"] + bit4 + rowObj["whydoyourecommendthisbook"] + bit5 + name + bit6;
+        var toAdd = bit1 + rowObj["title"] + ' ' + rowObj["author"] + bit2 + rowObj["title"] + bit3 + rowObj["author"] + bit4 + rowObj["recommendation"] + bit5 + name + bit6;
         document.getElementById("grid").innerHTML = toAdd + document.getElementById("grid").innerHTML;
 
         if (i + 1 == cells.length) {
@@ -57,7 +67,7 @@ $.ajax({
             new AnimOnScroll(document.getElementById('grid'), {
                 minDuration: 0.4,
                 maxDuration: 0.7,
-                viewportFactor: 0.2
+                viewportFactor: 0.4
             });
         }
     }
