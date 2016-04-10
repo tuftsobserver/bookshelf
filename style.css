@@ -25,7 +25,6 @@ body {
 }
 
 h1 {
-    margin: 0;
     text-align: center;
     font-family: "Vollkorn", serif;
     font-style: italic;
@@ -39,16 +38,25 @@ h2 {
     width: 100%;
     font-family: "Ubuntu", sans-serif;
     font-weight: 700;
-    font-size: 1.25rem;
-    text-align: center;
+    font-size: 1rem;
+    line-height:1.25rem;
+    text-align: left;
     text-transform: uppercase;
-    text-decoration: underline;
     color: white;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+}
+
+.show-portrait {
+    display:none;
+}
+
+#submit {
+    float:right;
+    text-decoration:underline;
 }
 
 #bar {
@@ -148,7 +156,7 @@ a {
 
 }
 
-#O > a > img {
+#O > img {
     height:2em;
     width:2em;
 }
@@ -179,11 +187,13 @@ a {
 
 @media only screen and (max-width: 720px) {
     h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        line-height: calc(2rem * 1.25);
     }
 
     h2 {
-        font-size: 1rem;
+        font-size: 0.8rem;
+        line-height:calc(0.8rem * 1.25);
     }
 
     .grid li {
@@ -199,6 +209,7 @@ a {
 @media only screen and (min-width:721px) and (max-width:1280px) {
     h1 {
         font-size: 4rem;
+        line-height:6rem;
     }
 
     .grid li {
