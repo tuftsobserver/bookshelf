@@ -63,7 +63,7 @@ h2 > a {
 #bar {
     padding: 1.25rem;
     background-color: #48484a;
-    background-image: url("img/pattern.png");
+    background-image: url("../img/pattern.png");
     color: white;
 }
 
